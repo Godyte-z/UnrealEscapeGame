@@ -19,7 +19,7 @@ void UPositionReport::BeginPlay()
 {
 	Super::BeginPlay(); //super is just saying run anything that's at the top of the inheritance stream first before running anything that down below here
 
-	// ...
+	UE_LOG(LogTemp, Warning, TEXT("Position report reporting for duty on Chair!"));
 	
 }
 
