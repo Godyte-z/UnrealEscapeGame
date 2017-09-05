@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "PositionReport.h"
+#include "Gameframework/Actor.h"
 
 
 // Sets default values for this component's properties
@@ -18,8 +19,10 @@ UPositionReport::UPositionReport() //this is the constructor
 void UPositionReport::BeginPlay()
 {
 	Super::BeginPlay(); //super is just saying run anything that's at the top of the inheritance stream first before running anything that down below here
-
-	UE_LOG(LogTemp, Warning, TEXT("Position report reporting for duty on Chair!"));
+    
+    FString ObjectName = GetOwner()->GetName(); //GameOwner here is a pointer to AActor, we then look throug that pointer to get to the GetName method which returns an FString. This is then put into ObjectName
+    FString ObjectPos = GetOwner()->GetTransform().GetLocation().ToString();
+	UE_LOG(LogTemp, Warning, TEXT("%s is at %s"), *ObjectName, *ObjectPos); //a bit confusing but the * is not being used as a pointer here?
 	
 }
 
