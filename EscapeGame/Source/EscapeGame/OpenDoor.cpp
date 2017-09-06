@@ -19,6 +19,13 @@ void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
     
+    //here we are sending a pawn into an actor //finds the actor that we are controlling...
+    ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn(); //GetFirstPlayerController is the link between the pawn and the player's mind
+	
+}
+
+void UOpenDoor::OpenDoor()
+{
     //Find the owning actor
     AActor* Owner = GetOwner(); //GameOwner here is a pointer to AActor
     
@@ -27,15 +34,18 @@ void UOpenDoor::BeginPlay()
     
     //Set the door rotation
     Owner->SetActorRotation(NewRotation);
-	
 }
-
 
 // Called every frame
 void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// ...
+	// Poll the Trigger Volume
+    if (PressurePlate->IsOverlappingActor(ActorThatOpens))
+    {
+        OpenDoor();
+    }
+    // If ActorThatOpens is in the volume
 }
 
