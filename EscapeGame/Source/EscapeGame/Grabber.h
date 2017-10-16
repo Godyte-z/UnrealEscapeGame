@@ -8,7 +8,7 @@
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class ESCAPEGAME_API UGrabber : public UActorComponent
+class ESCAPEGAME_API UGrabber : public UActorComponent //UActor here inherits the features from UGrabber
 {
 	GENERATED_BODY()
 
