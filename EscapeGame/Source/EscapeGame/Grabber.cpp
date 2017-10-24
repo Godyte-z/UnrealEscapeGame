@@ -42,6 +42,7 @@ void UGrabber::BeginPlay()
         UE_LOG(LogTemp, Warning, TEXT("Input Component found"), *GetOwner()->GetName())
         //Bind the input action
         InputComponent->BindAction("Grab",IE_Pressed, this, &UGrabber::Grab); //UGrabber is the class name here and Grab is the method
+        InputComponent->BindAction("Grab",IE_Released, this, &UGrabber::GrabRelease);
     }
     else
     {
@@ -53,7 +54,11 @@ void UGrabber::BeginPlay()
 void UGrabber::Grab()
 {
     UE_LOG(LogTemp, Warning, TEXT("Grab pressed"))
-    
+}
+
+void UGrabber::GrabRelease()
+{
+    UE_LOG(LogTemp, Warning, TEXT("Grab Released"))
 }
 
 // Called every frame
