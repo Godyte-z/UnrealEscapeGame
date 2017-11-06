@@ -7,6 +7,7 @@
 #include "Components/ActorComponent.h"
 #include "OpenDoor.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnOpenRequest); //here we are making a new class called FOnOpenRequest
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class ESCAPEGAME_API UOpenDoor : public UActorComponent
@@ -27,6 +28,9 @@ public:
 
     void OpenDoor();                 //NOT SURE IF THIS SHOULD BE HERE OR IF IT'S CORRECT!
     void CloseDoor();
+    
+    UPROPERTY(BlueprintAssignable)
+    FOnOpenRequest OnOpenRequest;
     
 private:
     UPROPERTY(EditAnywhere)

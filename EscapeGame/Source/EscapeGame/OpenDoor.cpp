@@ -34,7 +34,8 @@ void UOpenDoor::OpenDoor()
     //Create a rotator
     //-60.f //THIS IS ACTUALLY WHAT DETERMINES THE DOOR ROTATION....BUT IT'S GLOBAL NOT LOCAL TO OBJECT ROTATION!?
     //Set the door rotation
-    Owner->SetActorRotation(FRotator(0.f, OpenAngle, 0.f));
+    //Owner->SetActorRotation(FRotator(0.f, OpenAngle, 0.f));
+    OnOpenRequest.Broadcast();
 }
 
 void UOpenDoor::CloseDoor()
@@ -49,7 +50,7 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// Poll the Trigger Volume
-    if (GetTotalMassOfActorsOnPlate() > s) // TODO: make into a parameter
+    if (GetTotalMassOfActorsOnPlate() > 30.f) // TODO: make into a parameter
     {
         OpenDoor(); //open the door
         LastDoorOpenTime = GetWorld()->GetTimeSeconds(); //store when last opened door
